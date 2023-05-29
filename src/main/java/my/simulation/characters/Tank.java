@@ -1,6 +1,9 @@
 package my.simulation.characters;
 
-public class Tank extends Atributes_heroes {
+public class Tank extends Characters {
+    public Tank(String name, int coordinate_x, int coordinate_y, int health, int strength, int kills, int critical_damage, int delay, int range, int speed){
+        super(name, coordinate_x, coordinate_y, health, strength, kills, critical_damage, delay, range, speed);
+    }
     public void Attack(){
 
     }
