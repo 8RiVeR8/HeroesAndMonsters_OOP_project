@@ -1,6 +1,8 @@
 package my.simulation.characters;
 
-public class Characters {
+import my.simulation.map.Dependence;
+
+public class Characters implements Dependence {
     //Pododawać public private i protected!!
     private int strength;
     private int speed;
@@ -14,7 +16,7 @@ public class Characters {
     private int delay;
     private String name;
 
-    public Characters(String name, int coordinate_x, int coordinate_y, int health, int strength, int kills, int critical_damage, int delay, int range, int speed){
+    public Characters(String name, int coordinate_x, int coordinate_y, int health, int strength, int kills, int critical_damage, int range, int speed){
         this.name=name;
         this.speed=speed;
         this.range=range;
@@ -24,7 +26,6 @@ public class Characters {
         this.strength=strength;
         this.kills=kills;
         this.critical_damage=critical_damage;
-        this.delay=delay;
     }
     public void Kills(){
 
