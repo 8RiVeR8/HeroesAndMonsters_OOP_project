@@ -1,8 +1,16 @@
 package my.simulation.characters;
 
 public class Archer extends Characters {
-    public Archer(String name, int coordinate_x, int coordinate_y, int health, int strength, int kills, int critical_damage, int range, int speed){
-        super(name, coordinate_x, coordinate_y, health, strength, kills, critical_damage, range, speed);
+    public Archer(String name, int coordinate_x, int coordinate_y, int health, int strength, int kills, int critical_damage, int maxHealth, boolean move){
+        this.name=name;
+        this.maxHealt=maxHealth;
+        this.move=move;
+        this.coordinate_x=coordinate_x;
+        this.coordinate_y=coordinate_y;
+        this.health=health;
+        this.strength=strength;
+        this.kills=kills;
+        this.critical_damage=critical_damage;
     }
     public void Attack(){
 
