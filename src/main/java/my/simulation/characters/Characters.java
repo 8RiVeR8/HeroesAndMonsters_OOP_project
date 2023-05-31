@@ -2,7 +2,7 @@ package my.simulation.characters;
 
 import my.simulation.map.Dependence;
 
-public class Characters implements Dependence {
+public abstract class Characters implements Dependence {
     //Pododawać public private i protected!!
     public int strength;
     public int speed;

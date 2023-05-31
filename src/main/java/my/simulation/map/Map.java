@@ -36,7 +36,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Archer", rand_x, rand_y, 200, 25, 0, 30,200,false));
+                map.get(rand_x).set(rand_y, new Archer("Archer", rand_x, rand_y, 200, 25, 0, 30,200,true));
                 //System.out.print("A ");
                 i++;
             }
@@ -47,7 +47,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Knight", rand_x, rand_y, 200, 25, 0, 30,200, false));
+                map.get(rand_x).set(rand_y, new Archer("Knight", rand_x, rand_y, 200, 25, 0, 30,200, true));
                 //System.out.print("K ");
                 i++;
             }
@@ -58,7 +58,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Tank", rand_x, rand_y, 200, 25, 0, 30,200, false));
+                map.get(rand_x).set(rand_y, new Archer("Tank", rand_x, rand_y, 200, 25, 0, 30,200, true));
                 //System.out.print("T ");
                 i++;
             }
@@ -69,7 +69,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Dragon", rand_x, rand_y, 200, 25, 0, 30,200,false));
+                map.get(rand_x).set(rand_y, new Archer("Dragon", rand_x, rand_y, 200, 25, 0, 30,200,true));
                 //System.out.print("D ");
                 i++;
             }
@@ -80,7 +80,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Goblin", rand_x, rand_y, 200, 25, 0, 30,200,false));
+                map.get(rand_x).set(rand_y, new Archer("Goblin", rand_x, rand_y, 200, 25, 0, 30,200,true));
                 //System.out.print("G ");
                 i++;
             }
@@ -91,7 +91,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Barbarian", rand_x, rand_y, 200, 25, 0, 30,200,false));
+                map.get(rand_x).set(rand_y, new Archer("Barbarian", rand_x, rand_y, 200, 25, 0, 30,200,true));
                 //System.out.print("B ");
                 i++;
             }
