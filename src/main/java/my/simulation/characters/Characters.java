@@ -18,12 +18,19 @@ public abstract class Characters implements Dependence {
     public String name;
     public int maxHealt;
     public boolean move;
+    public int tier;
 
-    public void Kills(){
-
+    public int getX(){
+        return coordinate_x;
     }
-    public void Deaths(){
 
+    public int getY(){
+        return coordinate_y;
+    }
+
+    public void freshIndex(int new_X, int new_Y){
+        this.coordinate_x=new_X;
+        this.coordinate_y=new_Y;
     }
 
 }
