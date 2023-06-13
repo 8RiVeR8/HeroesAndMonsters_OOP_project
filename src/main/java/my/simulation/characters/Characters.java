@@ -3,7 +3,6 @@ package my.simulation.characters;
 import my.simulation.map.Dependence;
 
 public abstract class Characters implements Dependence {
-    //Pododawać public private i protected!!
     public int strength;
     public int coordinate_x;
     public int coordinate_y;
@@ -32,4 +31,23 @@ public abstract class Characters implements Dependence {
         this.coordinate_y=new_Y;
     }
 
+    @Override
+    public int getHealth(){
+        return health;
+    }
+
+    @Override
+    public int getMaxHealth(){
+        return maxHealt;
+    }
+
+    @Override
+    public String getName(){
+        return name;
+    }
+
+    @Override
+    public int getStrength(){
+        return strength;
+    }
 }

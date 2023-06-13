@@ -11,4 +11,20 @@ public interface Dependence {
     default int getY(){
         return 1;
     }
+
+    default int getHealth(){
+        return 1;
+    }
+
+    default int getMaxHealth(){
+        return 1;
+    }
+
+    default String getName(){
+        return null;
+    }
+
+     default int getStrength(){
+        return 1;
+    }
 }
