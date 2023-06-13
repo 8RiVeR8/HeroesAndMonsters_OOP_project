@@ -22,16 +22,13 @@ public class Main {
         System.out.println(wielkosc_mapy+" x "+wielkosc_mapy);
         map.map_nulling();
         map.RandomObjectPlacing(3, 3, 3, 3, 3, 3, 3, 3);
-        //map.map_drawing();
-
-        //ArrayList<ArrayList<Characters>> list = map.getMap();
-        //map.map_drawing();
-        //System.out.println(map.getMap());
-
-        while(true){
+        map.map_drawing();
+        map.statisticts();
+        TimeUnit.SECONDS.sleep(1);
+        while(map.end()){
             map.cycle();
             map.map_drawing();
-
+            map.statisticts();
             TimeUnit.SECONDS.sleep(1);
         }
     }

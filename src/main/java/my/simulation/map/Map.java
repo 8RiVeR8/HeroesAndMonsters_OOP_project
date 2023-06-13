@@ -8,8 +8,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
+    private int amountOfArchers=0;
+    private int amountOfBarbarians=0;
+    private int amountOfDragons=0;
+    private int amountOfGoblins=0;
+    private int amountOfKnights=0;
+    private int amountOfTanks=0;
+    private int amountOfGoodBoosts=0;
+    private int amountOfBadBoosts=0;
+    private int amountOfBoosts=0;
+    private int deadArchers=0;
+    private int deadBarbarians=0;
+    private int deadDragons=0;
+    private int deadGoblins=0;
+    private int deadKnights=0;
+    private int deadTanks=0;
     //Pododawać public private i protected!!
-    int coordinate_x_y;
+    private int coordinate_x_y;
     ArrayList<ArrayList<Characters>> map = new ArrayList<>(coordinate_x_y);
 
     public ArrayList<ArrayList<Characters>> getMap(){
@@ -31,13 +46,23 @@ public class Map {
         this.map=map;
     }
     public void RandomObjectPlacing(int howManyArcher, int howManyBarbarian, int howManyDragon, int howManyGoblin, int howManyTank, int howManyKnight, int howMuchBadBoost, int howMuchGoodBoost){
+        this.amountOfArchers=howManyArcher;
+        this.amountOfBarbarians=howManyBarbarian;
+        this.amountOfDragons=howManyDragon;
+        this.amountOfGoblins=howManyGoblin;
+        this.amountOfKnights=howManyKnight;
+        this.amountOfTanks=howManyTank;
+        this.amountOfGoodBoosts=howMuchGoodBoost;
+        this.amountOfBadBoosts=howMuchBadBoost;
+        this.amountOfBoosts=howMuchGoodBoost+howMuchBadBoost;
+
         int i;
         i=0;
         while(i<howManyArcher){
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Archer("Archer", rand_x, rand_y, 200, 25, 0, 30,200,true ,1));
+                map.get(rand_x).set(rand_y, new Archer("Archer", rand_y, rand_x, 150, 30, 0, 30,150,true ,1));
                 //System.out.print("A ");
                 i++;
             }
@@ -48,7 +73,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Knight("Knight", rand_x, rand_y, 200, 25, 0, 30,200, true, 1));
+                map.get(rand_x).set(rand_y, new Knight("Knight", rand_y, rand_x, 200, 35, 0, 30,200, true, 1));
                 //System.out.print("K ");
                 i++;
             }
@@ -59,7 +84,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Tank("Tank", rand_x, rand_y, 200, 25, 0, 30,200, true, 1));
+                map.get(rand_x).set(rand_y, new Tank("Tank", rand_y, rand_x, 250, 35, 0, 30,250, true, 1));
                 //System.out.print("T ");
                 i++;
             }
@@ -70,7 +95,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Dragon("Dragon", rand_x, rand_y, 200, 25, 0, 30,200,true, 1));
+                map.get(rand_x).set(rand_y, new Dragon("Dragon", rand_y, rand_x, 175, 40, 0, 30,175,true, 1));
                 //System.out.print("D ");
                 i++;
             }
@@ -81,7 +106,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Goblin("Goblin", rand_x, rand_y, 200, 25, 0, 30,200,true, 1));
+                map.get(rand_x).set(rand_y, new Goblin("Goblin", rand_y, rand_x, 100, 50, 0, 30,100,true, 1));
                 //System.out.print("G ");
                 i++;
             }
@@ -92,7 +117,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Barbarian("Barbarian", rand_x, rand_y, 200, 25, 0, 30,200,true, 1));
+                map.get(rand_x).set(rand_y, new Barbarian("Barbarian", rand_y, rand_x, 150, 45, 0, 30,150,true, 1));
                 //System.out.print("B ");
                 i++;
             }
@@ -103,7 +128,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Good_boost("Apple", rand_x, rand_y));
+                map.get(rand_x).set(rand_y, new Good_boost("Apple", rand_y, rand_x));
                 //System.out.print("a ");
                 i++;
             }
@@ -114,7 +139,7 @@ public class Map {
             int rand_x = (int) (Math.random()*(coordinate_x_y));
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
-                map.get(rand_x).set(rand_y, new Bad_boost("Salmonella", rand_x, rand_y));
+                map.get(rand_x).set(rand_y, new Bad_boost("Salmonella", rand_y, rand_x));
                 i++;
             }
         }
@@ -132,53 +157,55 @@ public class Map {
             }
             System.out.println("‖︎︎");
         }*/
-        System.out.print("╔");
+        System.out.print("*");
         for(int i=0; i<coordinate_x_y; i++){
-            System.out.print("═══");
+            System.out.print(" * ");
         }
-        System.out.print("╗");
+        System.out.print("*");
         System.out.println();
 
-        for(int i=0; i<coordinate_x_y; i++){
-            System.out.print("‖︎︎");
-            for(int j=0; j<coordinate_x_y; j++){
-                if(map.get(i).get(j)!=null){
-                    if(map.get(i).get(j).name=="Archer"){
-                        System.out.print(" A ");
-                    }
-                    if(map.get(i).get(j).name=="Tank"){
-                        System.out.print(" T ");
-                    }
-                    if(map.get(i).get(j).name=="Knight"){
-                        System.out.print(" K ");
-                    }
-                    if(map.get(i).get(j).name=="Goblin"){
-                        System.out.print(" G ");
-                    }
-                    if(map.get(i).get(j).name=="Dragon"){
-                        System.out.print(" D ");
-                    }
-                    if(map.get(i).get(j).name=="Barbarian"){
-                        System.out.print(" B ");
-                    }
-                    if(map.get(i).get(j).name=="Apple"){
-                        System.out.print(" a ");
-                    }
-                    if(map.get(i).get(j).name=="Salmonella"){
-                        System.out.print(" s ");
+        for(ArrayList<Characters> characters : map){
+            System.out.print("*");
+            for(Characters character : characters){
+                if(character != null){
+                    switch (character.name) {
+                        case "Archer":
+                            System.out.print("\u001B[32m A \u001B[0m");
+                            break;
+                        case "Barbarian":
+                            System.out.print("\u001B[34m B \u001B[0m");
+                            break;
+                        case "Dragon":
+                            System.out.print("\u001B[33m D \u001B[0m");
+                            break;
+                        case "Goblin":
+                            System.out.print("\u001B[35m G \u001B[0m");
+                            break;
+                        case "Knight":
+                            System.out.print("\u001B[36m K \u001B[0m");
+                            break;
+                        case "Tank":
+                            System.out.print("\u001B[31m T \u001B[0m");
+                            break;
+                        case "Apple":
+                            System.out.print("\u001B[93m a \u001B[0m");
+                            break;
+                        case "Salmonella":
+                            System.out.print("\u001B[95m s \u001B[0m");
+                            break;
                     }
                 }else{
                     System.out.print("   ");
                 }
             }
-            System.out.print("‖︎︎");
+            System.out.print("*");
             System.out.println();
         }
-        System.out.print("╚");
+        System.out.print("*");
         for(int i=0; i<coordinate_x_y; i++){
-            System.out.print("═══");
+            System.out.print(" * ");
         }
-        System.out.print("╝");
+        System.out.print("*");
         System.out.println();
     }
 
@@ -286,9 +313,9 @@ public class Map {
                 if(map.get(i).get(j)!=null){
                     switch (map.get(i).get(j).name){
                         case "Archer", "Barbarian", "Dragon", "Goblin", "Knight", "Tank":
-                            if(map.get(i).get(j).health >= (map.get(i).get(j).maxHealt / 3)) {
+                           // if(map.get(i).get(j).health >= (map.get(i).get(j).maxHealt / 3)) {
                                 map.get(i).get(j).move = true;
-                            }
+                            //}
                             break;
                         case "Apple", "Salmonella":
                             map.get(i).get(j).move = false;
@@ -302,79 +329,183 @@ public class Map {
     }
 
     public void statisticts(){
-
+        System.out.println("\u001B[32mArchers\u001B[37m: "+"\u001B[97m"+amountOfArchers+"\t \u001B[91mDeads: "+"\u001B[33m"+deadArchers);
+        System.out.println("\u001B[34mBarbarians\u001B[37m: "+"\u001B[97m"+amountOfBarbarians+"\t \u001B[91mDeads: "+"\u001B[33m"+deadBarbarians);
+        System.out.println("\u001B[33mDragons\u001B[37m: "+"\u001B[97m"+amountOfDragons+"\t \u001B[91mDeads: "+"\u001B[33m"+deadDragons);
+        System.out.println("\u001B[35mGoblins\u001B[37m: "+"\u001B[97m"+amountOfGoblins+"\t \u001B[91mDeads: "+"\u001B[33m"+deadGoblins);
+        System.out.println("\u001B[36mKnights\u001B[37m: "+"\u001B[97m"+amountOfKnights+"\t \u001B[91mDeads: "+"\u001B[33m"+deadKnights);
+        System.out.println("\u001B[31mTanks\u001B[37m: "+"\u001B[97m"+amountOfTanks+"\t \u001B[91mDeads: "+"\u001B[33m"+deadTanks);
+        System.out.println("\u001B[39mBoosts\u001B[93m: "+"\u001B[97m"+amountOfBoosts+"\u001B[32m Good boosts\u001B[37m: "+amountOfGoodBoosts+"\u001B[95m Bad boosts\u001B[37m: "+amountOfBadBoosts);
     }
 
-    public void activity(Characters champ, Characters foe){
+    private void activity(Characters champ, Characters foe){
         switch (foe.name){
             case "Archer", "Barbarian", "Dragon", "Goblin", "Knight", "Tank":
                 if(champ.name==foe.name){
-                    champ.tier++;
+                    //champ.tier++;
                     foe.tier++;
                 }else{
-                    if(champ.tier>=foe.tier){
+                        while(foe.health>0 || champ.health>0){
+                            foe.health=foe.health-(champ.strength*champ.tier)/2;
+                            if(foe.health<=0){
+                                break;
+                            }
+                            champ.health=champ.health-(foe.strength*foe.tier)/2;
+                        }
+                    if(champ.health>0){
+                        delete(champ.coordinate_y, champ.coordinate_x);
+                        champ.freshIndex(foe.coordinate_y, foe.coordinate_x);
                         delete(foe.coordinate_y, foe.coordinate_x);
+                        map.get(foe.coordinate_y).set(foe.coordinate_x, champ);
                         switch (foe.name){
                             case "Archer":
-                                //dodać
+                                amountOfArchers--;
+                                deadArchers++;
                                 break;
                             case "Barbarian":
-                                //dodać
+                                amountOfBarbarians--;
+                                deadBarbarians++;
                                 break;
                             case "Dragon":
-                                //dodać
+                                amountOfDragons--;
+                                deadDragons++;
                                 break;
                             case "Goblin":
-                                //dodać
+                                amountOfGoblins--;
+                                deadGoblins++;
                                 break;
                             case "Knight":
-                                //dodać
+                                amountOfKnights--;
+                                deadKnights++;
                                 break;
                             case "Tank":
-                                //dodać
+                                amountOfTanks--;
+                                deadTanks++;
                                 break;
                         }
                     }else{
+                        delete(foe.coordinate_y, foe.coordinate_x);
+                        foe.freshIndex(champ.coordinate_y, champ.coordinate_x);
                         delete(champ.coordinate_y, champ.coordinate_x);
+                        map.get(champ.coordinate_y).set(champ.coordinate_x, foe);
                         switch (champ.name){
                             case "Archer":
-                                //dodać
+                                amountOfArchers--;
+                                deadArchers++;
                                 break;
                             case "Barbarian":
-                                //dodać
+                                amountOfBarbarians--;
+                                deadBarbarians++;
                                 break;
                             case "Dragon":
-                                //dodać
+                                amountOfDragons--;
+                                deadDragons++;
                                 break;
                             case "Goblin":
-                                //dodać
+                                amountOfGoblins--;
+                                deadGoblins++;
                                 break;
                             case "Knight":
-                                //dodać
+                                amountOfKnights--;
+                                deadKnights++;
                                 break;
                             case "Tank":
-                                //dodać
+                                amountOfTanks--;
+                                deadTanks++;
                                 break;
                         }
                     }
                 }
                 break;
-            case "Apple", "Salmonella":
+            case "Apple":
+                champ.health=champ.maxHealt;
+                delete(champ.coordinate_y, champ.coordinate_x);
+                champ.freshIndex(foe.coordinate_y, foe.coordinate_x);
                 delete(foe.coordinate_y, foe.coordinate_x);
+                map.get(foe.coordinate_y).set(foe.coordinate_x, champ);
                 switch(foe.name){
                     case "Apple":
-                        //dodać
-                        break;
-                    case "Salmonella":
-                        //dodać
+                        amountOfGoodBoosts--;
                         break;
                 }
                 break;
-        }
 
+            case "Salmonella":
+                champ.health=0;
+                delete(champ.coordinate_y, champ.coordinate_x);
+                champ.freshIndex(foe.coordinate_y, foe.coordinate_x);
+                delete(foe.coordinate_y, foe.coordinate_x);
+                map.get(foe.coordinate_y).set(foe.coordinate_x, champ);
+                if(champ.health<=0){
+                    delete(champ.coordinate_y, champ.coordinate_x);
+                    map.get(foe.coordinate_y).set(foe.coordinate_x, null);
+                    switch (champ.name){
+                        case "Archer":
+                            amountOfArchers--;
+                            deadArchers++;
+                            break;
+                        case "Barbarian":
+                            amountOfBarbarians--;
+                            deadBarbarians++;
+                            break;
+                        case "Dragon":
+                            amountOfDragons--;
+                            deadDragons++;
+                            break;
+                        case "Goblin":
+                            amountOfGoblins--;
+                            deadGoblins++;
+                            break;
+                        case "Knight":
+                            amountOfKnights--;
+                            deadKnights++;
+                            break;
+                        case "Tank":
+                            amountOfTanks--;
+                            deadTanks++;
+                            break;
+                    }
+                }
+                amountOfBadBoosts--;
+                break;
+        }
     }
 
-    public void delete(int y, int x){
+    private void delete(int y, int x){
         map.get(y).set(x, null);
+    }
+
+    public boolean end(){
+        if(amountOfArchers==0 && amountOfTanks==0 && amountOfKnights==0 && amountOfGoblins==0 && amountOfDragons==0){
+            System.out.println();
+            System.out.println("\u001B[42m\u001B[30m♛ Barbarians win ♛\u001B[37m");
+            return false;
+        }
+        if(amountOfBarbarians==0 && amountOfTanks==0 && amountOfKnights==0 && amountOfGoblins==0 && amountOfDragons==0){
+            System.out.println();
+            System.out.println("\u001B[42m\u001B[30m♛ Archers win ♛\u001B[37m");
+            return false;
+        }
+        if(amountOfBarbarians==0 && amountOfArchers==0 && amountOfKnights==0 && amountOfGoblins==0 && amountOfDragons==0){
+            System.out.println();
+            System.out.println("\u001B[42m\u001B[30m♛ Tanks win ♛\u001B[37m");
+            return false;
+        }
+        if(amountOfBarbarians==0 && amountOfTanks==0 && amountOfArchers==0 && amountOfGoblins==0 && amountOfDragons==0){
+            System.out.println();
+            System.out.println("\u001B[42m\u001B[30m♛ Knights win ♛\u001B[37m");
+            return false;
+        }
+        if(amountOfBarbarians==0 && amountOfTanks==0 && amountOfKnights==0 && amountOfArchers==0 && amountOfDragons==0){
+            System.out.println();
+            System.out.println("\u001B[42m\u001B[30m♛ Goblins win ♛\u001B[37m");
+            return false;
+        }
+        if(amountOfBarbarians==0 && amountOfTanks==0 && amountOfKnights==0 && amountOfGoblins==0 && amountOfArchers==0){
+            System.out.println();
+            System.out.println("\u001B[42m\u001B[30m♛ Dragons win ♛\u001B[37m");
+            return false;
+        }
+        return true;
     }
 }
