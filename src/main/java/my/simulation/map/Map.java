@@ -23,7 +23,6 @@ public class Map {
     private int deadGoblins=0;
     private int deadKnights=0;
     private int deadTanks=0;
-    //Pododawać public private i protected!!
     private int coordinate_x_y;
     ArrayList<ArrayList<Characters>> map = new ArrayList<>(coordinate_x_y);
 
@@ -63,7 +62,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Archer("Archer", rand_y, rand_x, 150, 30, 0, 30,150,true ,1));
-                //System.out.print("A ");
                 i++;
             }
         }
@@ -74,7 +72,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Knight("Knight", rand_y, rand_x, 200, 35, 0, 30,200, true, 1));
-                //System.out.print("K ");
                 i++;
             }
         }
@@ -85,7 +82,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Tank("Tank", rand_y, rand_x, 250, 35, 0, 30,250, true, 1));
-                //System.out.print("T ");
                 i++;
             }
         }
@@ -96,7 +92,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Dragon("Dragon", rand_y, rand_x, 175, 40, 0, 30,175,true, 1));
-                //System.out.print("D ");
                 i++;
             }
         }
@@ -107,7 +102,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Goblin("Goblin", rand_y, rand_x, 100, 50, 0, 30,100,true, 1));
-                //System.out.print("G ");
                 i++;
             }
         }
@@ -118,7 +112,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Barbarian("Barbarian", rand_y, rand_x, 150, 45, 0, 30,150,true, 1));
-                //System.out.print("B ");
                 i++;
             }
         }
@@ -129,7 +122,6 @@ public class Map {
             int rand_y = (int) (Math.random()*(coordinate_x_y));
             if(map.get(rand_x).get(rand_y)==null){
                 map.get(rand_x).set(rand_y, new Good_boost("Apple", rand_y, rand_x));
-                //System.out.print("a ");
                 i++;
             }
         }
@@ -146,17 +138,6 @@ public class Map {
     }
 
     public void map_drawing(){
-        /*for (int i=0; i<coordinate_x_y+2; i++){
-            System.out.print("‖︎");
-            for(int j=0; j<coordinate_x_y; j++){
-                if(i==0 || i==coordinate_x_y+1){
-                    System.out.print("♛︎︎ ");
-                }else{
-                    System.out.print("  ");
-                }
-            }
-            System.out.println("‖︎︎");
-        }*/
         System.out.print("*");
         for(int i=0; i<coordinate_x_y; i++){
             System.out.print(" * ");
@@ -168,7 +149,7 @@ public class Map {
             System.out.print("*");
             for(Characters character : characters){
                 if(character != null){
-                    switch (character.name) {
+                    switch (character.getName()) {
                         case "Archer":
                             System.out.print("\u001B[32m A \u001B[0m");
                             break;
@@ -220,8 +201,6 @@ public class Map {
                         int randmove = random.nextInt(4);
                         Characters foe;
                         switch (randmove){
-                            //case 0://stój w miejscu
-                               // break;
                             case 0://ruch w prawo
                                 if(j + 1 > coordinate_x_y-1){//ściana
                                     if((foe = map.get(i).get(j-1)) == null){
@@ -311,17 +290,14 @@ public class Map {
         for(int i=0; i<coordinate_x_y; i++){
             for(int j=0; j<coordinate_x_y; j++){
                 if(map.get(i).get(j)!=null){
-                    switch (map.get(i).get(j).name){
+                    switch (map.get(i).get(j).getName()){
                         case "Archer", "Barbarian", "Dragon", "Goblin", "Knight", "Tank":
-                           // if(map.get(i).get(j).health >= (map.get(i).get(j).maxHealt / 3)) {
                                 map.get(i).get(j).move = true;
-                            //}
                             break;
                         case "Apple", "Salmonella":
                             map.get(i).get(j).move = false;
                             break;
                     }
-                    //map.get(i).get(j).move=true;
                 }
             }
         }
@@ -339,25 +315,24 @@ public class Map {
     }
 
     private void activity(Characters champ, Characters foe){
-        switch (foe.name){
+        switch (foe.getName()){
             case "Archer", "Barbarian", "Dragon", "Goblin", "Knight", "Tank":
-                if(champ.name==foe.name){
-                    //champ.tier++;
-                    foe.tier++;
+                if(champ.getName()==foe.getName()){
+                    foe.setTier(foe.getTier()+1);
                 }else{
-                        while(foe.health>0 || champ.health>0){
-                            foe.health=foe.health-(champ.strength*champ.tier)/2;
-                            if(foe.health<=0){
+                        while(foe.getHealth()>0 || champ.getHealth()>0){
+                            foe.setHealth(foe.getHealth()-(champ.getStrength()*champ.getTier())/2);
+                            if(foe.getHealth()<=0){
                                 break;
                             }
-                            champ.health=champ.health-(foe.strength*foe.tier)/2;
+                            champ.setHealth(champ.getHealth()-(foe.getStrength()*foe.getTier())/2);
                         }
-                    if(champ.health>0){
+                    if(champ.getHealth()>0){
                         delete(champ.coordinate_y, champ.coordinate_x);
                         champ.freshIndex(foe.coordinate_y, foe.coordinate_x);
                         delete(foe.coordinate_y, foe.coordinate_x);
                         map.get(foe.coordinate_y).set(foe.coordinate_x, champ);
-                        switch (foe.name){
+                        switch (foe.getName()){
                             case "Archer":
                                 amountOfArchers--;
                                 deadArchers++;
@@ -388,7 +363,7 @@ public class Map {
                         foe.freshIndex(champ.coordinate_y, champ.coordinate_x);
                         delete(champ.coordinate_y, champ.coordinate_x);
                         map.get(champ.coordinate_y).set(champ.coordinate_x, foe);
-                        switch (champ.name){
+                        switch (champ.getName()){
                             case "Archer":
                                 amountOfArchers--;
                                 deadArchers++;
@@ -418,12 +393,12 @@ public class Map {
                 }
                 break;
             case "Apple":
-                champ.health=champ.maxHealt;
+                champ.setHealth(champ.getMaxHealth());
                 delete(champ.coordinate_y, champ.coordinate_x);
                 champ.freshIndex(foe.coordinate_y, foe.coordinate_x);
                 delete(foe.coordinate_y, foe.coordinate_x);
                 map.get(foe.coordinate_y).set(foe.coordinate_x, champ);
-                switch(foe.name){
+                switch(foe.getName()){
                     case "Apple":
                         amountOfGoodBoosts--;
                         break;
@@ -431,15 +406,15 @@ public class Map {
                 break;
 
             case "Salmonella":
-                champ.health=0;
+                champ.setHealth(0);
                 delete(champ.coordinate_y, champ.coordinate_x);
                 champ.freshIndex(foe.coordinate_y, foe.coordinate_x);
                 delete(foe.coordinate_y, foe.coordinate_x);
                 map.get(foe.coordinate_y).set(foe.coordinate_x, champ);
-                if(champ.health<=0){
+                if(champ.getHealth()<=0){
                     delete(champ.coordinate_y, champ.coordinate_x);
                     map.get(foe.coordinate_y).set(foe.coordinate_x, null);
-                    switch (champ.name){
+                    switch (champ.getName()){
                         case "Archer":
                             amountOfArchers--;
                             deadArchers++;

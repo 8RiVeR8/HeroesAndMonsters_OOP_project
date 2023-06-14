@@ -3,17 +3,17 @@ package my.simulation.characters;
 import my.simulation.map.Dependence;
 
 public abstract class Characters implements Dependence {
-    public int strength;
+    private int strength;
     public int coordinate_x;
     public int coordinate_y;
-    public int health;
+    private int health;
     public int kills;
     public int critical_damage = 2*strength;
 
-    public String name;
-    public int maxHealt;
+    private String name;
+    private int maxHealt;
     public boolean move;
-    public int tier;
+    private int tier;
 
     @Override
     public int getX(){
@@ -49,5 +49,29 @@ public abstract class Characters implements Dependence {
     @Override
     public int getStrength(){
         return strength;
+    }
+
+    public int getTier(){
+        return tier;
+    }
+
+    public void setStrength(int strength){
+        this.strength=strength;
+    }
+
+    public void setHealth(int health){
+        this.health=health;
+    }
+
+    public void setName(String name){
+        this.name=name;
+    }
+
+    public void setMaxHealt(int maxHealt){
+        this.maxHealt=maxHealt;
+    }
+
+    public void setTier(int tier){
+        this.tier=tier;
     }
 }
