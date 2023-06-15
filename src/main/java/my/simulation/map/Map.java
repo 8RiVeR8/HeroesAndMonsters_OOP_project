@@ -7,6 +7,17 @@ import my.simulation.equipments.Good_boost;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ This class represents a character in the game scenario.
+ Each character has a name, health, strength, and tier.
+ The name identifies the character type, such as Archer, Barbarian, etc.
+ Health indicates the character's remaining health points.
+ Strength represents the character's combat power.
+ Tier is a measure of the character's level or rank.
+ The class includes methods for accessing and modifying these attributes.
+ It also supports actions like setting a character's position on the map and updating the character's status.
+ Overall, this class encapsulates the properties and behaviors of a character in the game scenario.
+ */
 public class Map {
     private int amountOfArchers=0;
     private int amountOfBarbarians=0;
@@ -26,15 +37,34 @@ public class Map {
     private int coordinate_x_y;
     ArrayList<ArrayList<Characters>> map = new ArrayList<>(coordinate_x_y);
 
+
+    /**
+     Retrieves the current map configuration.
+     @return The map, represented as a two-dimensional ArrayList of Characters.
+     */
     public ArrayList<ArrayList<Characters>> getMap(){
         return map;
     }
 
+
+
+    /**
+     Sets the size of the map grid based on the given coordinate value.
+     This method updates the size of the map grid to match the specified coordinate value.
+     @param x_y The coordinate value representing the size of the map grid.
+     @return The updated coordinate value after setting the map size.
+     */
     public int map_coordinate(int x_y){
         this.coordinate_x_y=x_y;
         return coordinate_x_y;
     }
 
+
+    /**
+
+     Initializes the map grid by setting all elements to null.
+     This method fills the map grid with null values for each coordinate.
+     */
     public void map_nulling(){
         for(int i=0; i<coordinate_x_y; i++){
             map.add(new ArrayList<Characters>(coordinate_x_y));
@@ -44,6 +74,21 @@ public class Map {
         }
         this.map=map;
     }
+
+
+    /**
+
+     Randomly places characters and boosts on the map grid.
+     This method randomly places a specified number of characters and boosts on the map grid.
+     @param howManyArcher The number of Archer characters to place on the map.
+     @param howManyBarbarian The number of Barbarian characters to place on the map.
+     @param howManyDragon The number of Dragon characters to place on the map.
+     @param howManyGoblin The number of Goblin characters to place on the map.
+     @param howManyTank The number of Tank characters to place on the map.
+     @param howManyKnight The number of Knight characters to place on the map.
+     @param howMuchBadBoost The number of Bad Boosts to place on the map.
+     @param howMuchGoodBoost The number of Good Boosts to place on the map.
+     */
     public void RandomObjectPlacing(int howManyArcher, int howManyBarbarian, int howManyDragon, int howManyGoblin, int howManyTank, int howManyKnight, int howMuchBadBoost, int howMuchGoodBoost){
         this.amountOfArchers=howManyArcher;
         this.amountOfBarbarians=howManyBarbarian;
@@ -137,6 +182,21 @@ public class Map {
         }
     }
 
+/**
+
+ Draws the map grid with characters and boosts.
+ This method prints the map grid with characters and boosts represented by specific symbols and colors.
+ Characters are represented by their initials (A, B, D, G, K, T), and boosts are represented by lowercase letters (a, s).
+ The colors used for characters and boosts are as follows:
+ Archer: Green
+ Barbarian: Blue
+ Dragon: Yellow
+ Goblin: Purple
+ Knight: Cyan
+ Tank: Red
+ Apple (Good Boost): Light Yellow
+ Salmonella (Bad Boost): Light Purple
+ */
     public void map_drawing(){
         System.out.print("*");
         for(int i=0; i<coordinate_x_y; i++){
@@ -190,7 +250,15 @@ public class Map {
         System.out.println();
     }
 
-    public void cycle(){
+/**
+
+ Executes a cycle of movement for characters on the map.
+ This method iterates through the map and performs movement for each character that is eligible to move.
+ Characters can move in four directions: right, left, up, and down, based on a random selection.
+ If a character encounters an obstacle (wall) or another character during movement, a corresponding action is performed.
+ After the cycle is completed, the movement status is updated for each character.
+ */
+ public void cycle(){
         for(int i=0; i<coordinate_x_y; i++){
             for(int j=0; j<coordinate_x_y; j++){
                 if(map.get(i).get(j)!=null){
@@ -304,6 +372,13 @@ public class Map {
 
     }
 
+    /**
+     Prints the statistics of various units and boosts in the game.
+     The statistics include the number of archers, barbarians, dragons,
+     goblins, knights, tanks, boosts, good boosts, and bad boosts.
+     The number of dead units for each type is also displayed.
+     The statistics are displayed in different colors for better readability.
+     */
     public void statisticts(){
         System.out.println("\u001B[32mArchers\u001B[37m: "+"\u001B[97m"+amountOfArchers+"\t \u001B[91mDeads: "+"\u001B[33m"+deadArchers);
         System.out.println("\u001B[34mBarbarians\u001B[37m: "+"\u001B[97m"+amountOfBarbarians+"\t \u001B[91mDeads: "+"\u001B[33m"+deadBarbarians);
@@ -314,6 +389,12 @@ public class Map {
         System.out.println("\u001B[39mBoosts\u001B[93m: "+"\u001B[97m"+amountOfBoosts+"\u001B[32m Good boosts\u001B[37m: "+amountOfGoodBoosts+"\u001B[95m Bad boosts\u001B[37m: "+amountOfBadBoosts);
     }
 
+    /**
+     Performs an activity between two characters: a champion and a foe.
+     The activity can involve combat or interaction with boosts.
+     @param champ The champion character.
+     @param foe The foe character.
+     */
     private void activity(Characters champ, Characters foe){
         switch (foe.getName()){
             case "Archer", "Barbarian", "Dragon", "Goblin", "Knight", "Tank":
@@ -446,10 +527,21 @@ public class Map {
         }
     }
 
+    /**
+     Deletes the character at the specified coordinates from the map.
+     @param y The y-coordinate of the character's position.
+     @param x The x-coordinate of the character's position.
+     */
     private void delete(int y, int x){
         map.get(y).set(x, null);
     }
 
+/**
+
+ Checks if the game has ended by determining if any unit type has been completely eliminated.
+ Prints the corresponding winner's message based on the remaining units.
+ @return {@code false} if any unit type has been eliminated and prints the corresponding winner's message,
+ */
     public boolean end(){
         if(amountOfArchers==0 && amountOfTanks==0 && amountOfKnights==0 && amountOfGoblins==0 && amountOfDragons==0){
             System.out.println();

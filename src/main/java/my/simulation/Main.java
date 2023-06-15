@@ -11,9 +11,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The Main class serves as the entry point for the simulation program.
+ */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        //Jest sobie użytkownik, który na początku wybiera rozmiar planszy
         Map map = new Map();
         int wielkosc_mapy;
         Scanner mapa = new Scanner(System.in);
